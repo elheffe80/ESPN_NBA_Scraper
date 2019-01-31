@@ -1,0 +1,1 @@
+This scraper is intended for me to learn how to use BeautifulSoup to scrape a page, and then MatPlotLib to create a simple line graph.  It has definitely checked both of those blocks.
