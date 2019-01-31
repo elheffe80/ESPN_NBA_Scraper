@@ -1,12 +1,20 @@
+#!/usr/bin/env python3
+"""
+A script used to scrape a very small subset of ESPN's pages and create a graph.  Intended for me to use to learn how
+to scrape pages with BeautifulSoup, and graphs with MatPlotLib.
+In order to use, change the stats_page variable to point to one of the pages on ESPN's stats for the NBA.  I was
+specifically interested in the free throws, thus the current URL.
+"""
+
+
 # import libraries
 import re
 import requests
 from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
-import numpy as np
 
 # specify the url
-stats_page = 'http://www.espn.com/nba/team/stats/_/name/wsh/cat/avgFieldGoalsAttempted'
+stats_page = 'http://www.espn.com/nba/statistics/player/_/stat/free-throws/year/2018'
 
 # yank that page down here for some post-processing!!
 page = requests.get(stats_page)
@@ -114,6 +122,6 @@ def averages_to_float(float_averages: list) -> list:
 
 names = get_players(soup.table)
 averages = get_field_throw_average(soup.table)
-#print_average(names, averages)
-#print('The average of the averages for listed players: ', get_average_of_averages(averages))
+print_average(names, averages)
+print('The average of the averages for listed players: ', get_average_of_averages(averages))
 make_graph_free_throw_averages(averages_to_float(averages))
